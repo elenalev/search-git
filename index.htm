@@ -22,14 +22,12 @@
                     <form class="form-inline">
                         <div>
                             <h4>Search
+                                <label class="label label-default">Search</label> 
                                 <input ng-model="searchRepository" placeholder="Search Repository" class="form-control input-sm">
-                                <button ng-click="GetRepositories()">
+                                <button class="btn btn-default" ng-click="GetRepositories()">
                                         Go
                                 </button>
-                            </h4>
-                        </div>
-                        <div>
-                            <h4>Filter <span class="badge">{{repoData.length}}</span>
+                                <label class="label label-default">Filter</label><span class="badge">{{repoData.length}}</span>
                                 <input ng-model="searchText" placeholder="Filter" class="form-control input-sm">
                             </h4>
                         </div>
