@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="code.js"></script>
+</head>
+
+<body id="page-top" class="index">
+    <div ng-controller="gitApi" ng-app="app">
+        <div class="container">
+            <h1 class="text-center">
+                <span ng-hide="userData">Loading</span>
+                <span>{{userData.name}}</span>
+                <br>
+                <a href="{{userData.html_url}}" class="btn btn-default">
+                    {{userData.login}}
+                </a>
+            </h1>
+            <div class="panel  panel-default">
+                <div class="panel-heading">
+                    <form class="form-inline">
+                        <div>
+                            <h4>Search
+                                <input ng-model="searchRepository" placeholder="Search Repository" class="form-control input-sm">
+                                <button ng-click="GetRepositories()">
+                                        Go
+                                </button>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Filter <span class="badge">{{repoData.length}}</span>
+                                <input ng-model="searchText" placeholder="Filter" class="form-control input-sm">
+                            </h4>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div ng-repeat="orgs in orgsData | filter:searchText  | orderBy:repo_sort:reverse"
+                            class="list-group-item ">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>
+                                        <a href="{{repo.html_url}}" target="_blank">
+                                            {{orgs.name}}
+                                        </a>
+                                        <small>{{orgs.description}}</small>
+                                    </h4>
+                                    <small>
+                                        <a href="{{orgs.homepage}}" class="">
+                                            <i class="fa fa-link"></i> WebPage
+                                        </a>
+                                    </small>
+                                </div>
+                                <div class="col-md-6">
+                                    Conributors List:
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                repository name
+                                            </div>
+                                            <div class="col-md-4">
+                                                avatar
+                                            </div>
+                                            <div class="col-md-4">
+                                                bookmark button
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="contrib in orgs.contributors | filter:searchText | orderBy:contrib_sort:reverse"
+                                        class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                {{contrib.login}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <img ng-src="{{contrib.avatar_url}}" height="42" width="42" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a href="{{contrib.html_url}}" target="_blank">
+                                                    go to repository
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
