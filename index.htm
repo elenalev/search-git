@@ -21,7 +21,7 @@
                 <div class="panel-heading">
                     <form class="form-inline">
                         <div>
-                            <h4>Search
+                            <h4>
                                 <label class="label label-default">Search</label> 
                                 <input ng-model="searchRepository" placeholder="Search Repository" class="form-control input-sm">
                                 <button class="btn btn-default" ng-click="GetRepositories()">
@@ -34,7 +34,7 @@
                     </form>
                 </div>
                 <div class="panel-body">
-                    <div class="list-group">
+                    <div class="list-group"><!--show organisations results in repeater filtered by searchText -->
                         <div ng-repeat="orgs in orgsData | filter:searchText  | orderBy:repo_sort:reverse"
                             class="list-group-item ">
                             <div class="row">
@@ -57,7 +57,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 repository name
-                                            </div>
+                                            </div>orgsData
                                             <div class="col-md-4">
                                                 avatar
                                             </div>
@@ -65,7 +65,7 @@
                                                 bookmark button
                                             </div>
                                         </div>
-                                    </div>
+                                    </div><!--show contibutors results in repeater filtered by searchText -->
                                     <div ng-repeat="contrib in orgs.contributors | filter:searchText | orderBy:contrib_sort:reverse"
                                         class="list-group-item">
                                         <div class="row">
